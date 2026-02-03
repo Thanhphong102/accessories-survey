@@ -38,11 +38,6 @@ function UserForm() {
     }
   };
 
-  // Hàm để quay lại nhập tiếp
-  const handleReset = () => {
-    setIsSubmitted(false);
-  };
-
   return (
     <div className="form-container">
       
