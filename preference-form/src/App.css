@@ -1,0 +1,179 @@
+/* Reset & Base */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+
+.App {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Glassmorphism Form */
+.form-container {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 { margin-bottom: 25px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.input-group { margin-bottom: 20px; text-align: left; }
+label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.95rem; }
+
+/* --- INPUT & SELECT STYLE (Đồng bộ) --- */
+input, select {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+input:focus, select:focus {
+  background: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* --- TÙY CHỈNH SELECT (Xóa mũi tên mặc định, thêm mũi tên đẹp) --- */
+select {
+  appearance: none; /* Xóa mũi tên mặc định của trình duyệt */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  
+  /* Thêm mũi tên SVG tùy chỉnh */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236a11cb%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center; /* Căn phải */
+  background-size: 12px; /* Kích thước mũi tên */
+}
+
+/* Style cho trạng thái Placeholder (chưa chọn gì) */
+select.placeholder-mode {
+  color: #888; /* Màu chữ xám nhạt */
+  font-style: italic;
+}
+
+/* Style cho Button */
+button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+button:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+/* CSS cho Dashboard Grid */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.stat-card { background: rgba(255,255,255,0.9); padding: 15px; border-radius: 12px; color: #333; }
+.stat-card p { font-size: 2rem; font-weight: bold; color: #6a11cb; margin-top: 5px; }
+
+
+/* --- CSS CHO DASHBOARD & TABLE --- */
+
+/* Mở rộng chiều rộng container khi ở trang dashboard */
+.dashboard-container {
+  max-width: 800px !important; /* Rộng hơn form nhập liệu để chứa bảng */
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Khung cuộn cho bảng (nếu dài quá) */
+.table-wrapper {
+  margin-top: 30px;
+  max-height: 400px;
+  overflow-y: auto; /* Thanh cuộn dọc */
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Style cơ bản cho bảng */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tiêu đề bảng dính lên trên khi cuộn */
+.data-table th {
+  background: rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* Hiệu ứng hover từng dòng */
+.data-table tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Badge (Nhãn màu) cho loại phụ kiện */
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.badge.blue { background: #2575fc; }
+.badge.purple { background: #6a11cb; }
+.badge.pink { background: #ff758c; }
+
+/* Custom thanh cuộn cho đẹp */
+.table-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
